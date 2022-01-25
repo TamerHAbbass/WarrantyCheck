@@ -2,11 +2,14 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import csv
 import time
+import os
+
 
 
 class WarrantyCheck:
     
     def __init__(self):
+        os.environ['MOZ_HEADLESS'] = '1'
         self.driver = webdriver.Firefox(executable_path=r'c:\temp\firefoxdriver\geckodriver.exe')
         self.csv_list = []
         self.comp_dict = {}
@@ -57,7 +60,7 @@ class WarrantyCheck:
     
     def over20Submit(self):
         self.submitEntry()
-        time.sleep(10)
+        time.sleep(6)
         self.checkForProductNumber()
         self.submitEntry()
         time.sleep(10)
