@@ -9,7 +9,7 @@ import os
 class WarrantyCheck:
     
     def __init__(self):
-        os.environ['MOZ_HEADLESS'] = '1'
+        # os.environ['MOZ_HEADLESS'] = '1'
         self.driver = webdriver.Firefox(executable_path=r'c:\temp\firefoxdriver\geckodriver.exe')
         self.csv_list = []
         self.comp_dict = {}
@@ -42,7 +42,7 @@ class WarrantyCheck:
 
     def submitEntry(self):
         elem = self.driver.find_element_by_id('btnWFormSubmit')
-        elem.send_keys(Keys.RETURN)
+        self.driver.execute_script("arguments[0].click();", elem)
     
     def checkForProductNumber(self):
         package = []
@@ -60,7 +60,7 @@ class WarrantyCheck:
     
     def over20Submit(self):
         self.submitEntry()
-        time.sleep(6)
+        time.sleep(10)
         self.checkForProductNumber()
         self.submitEntry()
         time.sleep(10)
